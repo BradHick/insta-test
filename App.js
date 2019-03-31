@@ -1,29 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import List from './src/Components/List';
 
-type Props = {};
-export default class App extends Component<Props> {
+
+export default class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state ={
+      feed: [
+        {id: '1', name: 'Lucas Silva', description: 'Mais um dia de muitos bugs :)', profileImg: 'https://sujeitoprogramador.com/instareact/fotoPerfil1.png', publicationImg: 'https://sujeitoprogramador.com/instareact/foto1.png',  liked: false, likers: 0},
+        {id: '2', name: 'Matheus', description: 'Isso sim é ser raiz!!!!!', profileImg: 'https://sujeitoprogramador.com/instareact/fotoPerfil2.png', publicationImg: 'https://sujeitoprogramador.com/instareact/foto2.png', liked: false, likers: 0},
+        {id: '3', name: 'Jose Augusto', description: 'Bora trabalhar Haha', profileImg: 'https://sujeitoprogramador.com/instareact/fotoPerfil3.png', publicationImg: 'https://sujeitoprogramador.com/instareact/foto3.png',  liked: false, likers: 3},
+        {id: '4', name: 'Gustavo Henrique', description: 'Isso sim que é TI!', profileImg: 'https://sujeitoprogramador.com/instareact/fotoPerfil1.png', publicationImg: 'https://sujeitoprogramador.com/instareact/foto4.png', liked: false, likers: 1},
+        {id: '5', name: 'Guilherme', description: 'Boa tarde galera do insta...', profileImg: 'https://sujeitoprogramador.com/instareact/fotoPerfil2.png', publicationImg: 'https://sujeitoprogramador.com/instareact/foto5.png', liked: false, likers: 32}
+      ]
+    };
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <FlatList 
+          data={this.state.feed}
+          renderItem={ ({ item }) => <List data={item} />}
+          keyExtractor={item => item.id}
+        />
       </View>
     );
   }
@@ -32,18 +37,5 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
