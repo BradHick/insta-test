@@ -16,7 +16,7 @@ export default class List extends Component {
   }
 
   render() {
-    const { profileImg, name, publicationImg, liked, likers } = this.state.feed;
+    const { profileImg, name, publicationImg, description, liked, likers } = this.state.feed;
 
     const loadIcon = (liked) => {
       if (liked){
@@ -33,7 +33,7 @@ export default class List extends Component {
     };
 
     const showLikes = (likers) =>{
-      if (likers >= 0){
+      if (likers > 0){
         return (
           <Text style={styles.likersText}>
             {`${likers} ${likers == 1 ? 'curtida' : 'curtidas' }`}
@@ -60,6 +60,11 @@ export default class List extends Component {
           </TouchableOpacity>
         </View>
         {showLikes(likers)}
+
+        <View style={styles.footer}>
+          <Text style={styles.footerName}>{name}</Text>
+          <Text style={styles.footerDescription}>{description}</Text>
+        </View>
       </View>
     );
   };
@@ -108,6 +113,22 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontWeight: 'bold',
     paddingLeft: 5
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  footerName: {
+    fontWeight: 'bold',
+    color: '#000000',
+    fontSize: 18,
+    paddingLeft: 5
+  },
+  footerDescription: {
+    fontSize: 15,
+    color: '#000000',
+    paddingLeft: 5
+
   }
 });
 
