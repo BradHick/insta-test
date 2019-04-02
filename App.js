@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { Platform, StyleSheet, View, FlatList } from 'react-native';
 
 import List from './src/Components/List';
 
@@ -37,5 +37,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 50
   }
 });
